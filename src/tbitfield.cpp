@@ -152,13 +152,33 @@ TBitField TBitField::operator~(void) // отрицание
 
 // ввод/вывод
 
-istream &operator>>(istream &istr, TBitField &bf) // ввод
+istream &operator>>(istream &istr, TBitField &bf) // ввод 
 {
+	int k;
+	int z;
+	cout<< "Enter the Bitlen"<< endl;
+	cin>> k;
+	TBitField A(k);
+	cout<< "Enter the BitField, please"<< endl;
+	for (int i = 0; i < A.GetLength(); i++)
+	{
+		cin>> z;
+		if (z == 1)
+			A.SetBit(i);
+	}
+	bf = A;
+
 	return istr;
 }
 
 ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
 {
-	cout << "{" << "}\n";
-	return ostr;
+	
+		for (int i = 0; i < bf.BitLen; i++)
+			if (bf.GetBit(i) == 0)
+				ostr<< 0;
+			else ostr<< 1;
+			ostr<< endl;
+			return ostr;
+	
 }
